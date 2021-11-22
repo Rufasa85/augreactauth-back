@@ -6,7 +6,12 @@ const cors = require("cors");
 // Sets up the Express App
 // =============================================================
 const app = express();
+//LOCAL
 app.use(cors())
+//DEPLOYED
+// app.use(cors({
+//     origin:[/* DEPLOYED REACT URL HERE */]
+// }))
 const PORT = process.env.PORT || 3001;
 // Requiring our models for syncing
 const { User} = require('./models');
