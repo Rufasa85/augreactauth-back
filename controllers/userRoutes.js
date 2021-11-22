@@ -34,7 +34,7 @@ router.post("/login", (req, res) => {
               email:foundUser.email,
               id:foundUser.id
             },
-            "secret"
+            process.env.JWT_SECRET
             ,{
               expiresIn:"2h"
             })    
