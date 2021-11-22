@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 const { User } = require("../models");
 
@@ -24,13 +25,13 @@ router.post("/login", (req, res) => {
   })
     .then(foundUser => {
         if(!foundUser){
-            res.status(404).send("no user found")
+            res.status(401).send("incorrect email or password")
         }
-        else if(req.body.password===foundUser.password){    
+        else if(bcrypt.compareSync(req.body.password,foundUser.password)){    
             res.json(foundUser);
         }
         else {
-            res.status(401).send("wrong password")
+            res.status(401).send("incorrect email or password")
         }
     })
     .catch(err => {

@@ -1,6 +1,5 @@
 const express = require('express');
 const allRoutes = require('./controllers');
-
 const sequelize = require('./config/connection');
 
 // Sets up the Express App
@@ -16,7 +15,7 @@ app.use(express.json());
 // Static directory
 app.use('/',allRoutes);
 
-sequelize.sync({ force: true }).then(function() {
+sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
     console.log('App listening on PORT ' + PORT);
     });
